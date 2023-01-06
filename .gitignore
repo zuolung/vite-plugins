@@ -1,0 +1,12 @@
+*.log
+*.swp
+*.error
+
+.vs
+.cache
+.temp
+.idea
+.rn_temp
+.DS_Store
+node_modules
+dist

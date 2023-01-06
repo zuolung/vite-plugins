@@ -1,0 +1,45 @@
+{
+  "name": "vitejs-plugins",
+  "version": "0.0.1",
+  "description": "easy to use vitejs plugins",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "unbuild",
+    "release": "npx release-it"
+  },
+  "keywords": [
+    "vitejs",
+    "plugin",
+    "vite",
+    "plugins"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/generator": "^7.20.7",
+    "@babel/parser": "^7.20.7",
+    "@babel/template": "^7.20.7",
+    "@babel/traverse": "^7.20.12",
+    "@babel/types": "^7.20.7",
+    "chokidar": "^3.5.3",
+    "glob": "^8.0.3",
+    "prettier": "^2.8.1",
+    "unbuild": "^1.0.2",
+    "vite": "^4.0.4"
+  },
+  "devDependencies": {
+    "release-it": "^15.6.0"
+  }
+}
