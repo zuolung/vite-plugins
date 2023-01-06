@@ -38,6 +38,7 @@ export default function VitePluginAsyncCatch({
         }
       const ast = parse(code, {
         sourceType: 'module',
+        plugins: ['jsx', 'typescript'],
       })
 
       const visitor = {

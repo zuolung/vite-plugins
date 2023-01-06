@@ -37,7 +37,7 @@
   "bugs": {
     "url": "https://github.com/zuolung/vite-plugins/issues"
   },
-  "author": "",
+  "author": "zuolung",
   "license": "MIT",
   "dependencies": {
     "@babel/generator": "^7.20.7",
@@ -48,10 +48,13 @@
     "chokidar": "^3.5.3",
     "glob": "^8.0.3",
     "prettier": "^2.8.1",
-    "unbuild": "^1.0.2",
-    "vite": "^4.0.4"
+    "unbuild": "^1.0.2"
   },
   "devDependencies": {
-    "release-it": "^15.6.0"
+    "release-it": "^15.6.0",
+    "vite": "^4.0.4"
+  },
+  "peerDependencies": {
+    "vite": ">=3.0.0"
   }
 }
