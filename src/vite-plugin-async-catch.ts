@@ -2,7 +2,7 @@ import type { Plugin } from 'vite'
 import template from '@babel/template'
 import { stringLiteral } from '@babel/types'
 import { parse } from '@babel/parser'
-import tarverse from '@babel/traverse'
+import traverse from '@babel/traverse'
 import generator from '@babel/generator'
 
 let tryTemplate = `
@@ -91,7 +91,7 @@ export default function VitePluginAsyncCatch({
             (node.argument.callee && node.argument.callee.name) ||
             ''
 
-          const temp = template(tryTemplate)
+          const temp = template.default(tryTemplate)
 
           const tempArgumentObj = {
             ERROR_PLACEHOLDER: stringLiteral(
@@ -111,10 +111,10 @@ export default function VitePluginAsyncCatch({
         },
       }
 
-      tarverse(ast, visitor)
+      traverse.default(ast, visitor)
 
       return {
-        code: generator(ast).code,
+        code: generator.default(ast).code,
         map: null,
       }
     },
