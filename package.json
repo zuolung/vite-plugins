@@ -25,8 +25,19 @@
     "vite",
     "plugins"
   ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zuolung/vite-plugins"
+  },
+  "bugs": {
+    "url": "https://github.com/zuolung/vite-plugins/issues"
+  },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@babel/generator": "^7.20.7",
     "@babel/parser": "^7.20.7",
