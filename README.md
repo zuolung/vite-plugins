@@ -21,6 +21,15 @@ yarn add vitejs-plugins
 ## Usage
 
 ### VitePluginAsyncCatch
+It is defined globally in advance to handle the error information returned by the multi-layer asyncAwait function
+
+```ts
+window.handleTryCatchError = function (detail, functionName, line, err) {
+  console.info(detail, functionName, line, err)
+}
+```
+Reconfigure the vitejs plugin
+
 ```ts
 import { VitePluginAsyncCatch } from 'vitejs-plugins'
 

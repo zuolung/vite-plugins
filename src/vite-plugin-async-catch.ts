@@ -8,7 +8,7 @@ import generator from '@babel/generator'
 let tryTemplate = `
 try {
 } catch (e) {
-console.error(ERROR_PLACEHOLDER,e)
+  handleTryCatchError(ERROR_F, ERROR_N, ERROR_S, e)
 }`
 
 export default function VitePluginAsyncCatch({
@@ -46,12 +46,8 @@ export default function VitePluginAsyncCatch({
           if (path.findParent((p) => p.isTryStatement())) {
             return false
           }
-
           const filePath = id || 'unknown'
           let node = path.node
-
-          // async 函数分为5种情况：函数声明 || 箭头函数 || 函数表达式 || 对象的方法 || class内部函数
-
           const asyncPath = path.findParent(
             (p) =>
               p &&
@@ -63,50 +59,37 @@ export default function VitePluginAsyncCatch({
                 p.isObjectMethod() ||
                 p.isClassMethod()),
           )
-
           let asyncName = ''
           const type = asyncPath.node.type
-
           switch (type) {
             case 'FunctionExpression':
             case 'ClassMethod':
             case 'ArrowFunctionExpression':
-              // 使用path.getSibling(index)来获得同级的id路径
               let identifier = asyncPath.getSibling('id')
               asyncName =
                 identifier && identifier.node ? identifier.node.name : ''
               break
-
             case 'FunctionDeclaration':
               asyncName = (asyncPath.node.id && asyncPath.node.id.name) || ''
               break
-
             case 'ObjectMethod':
               asyncName = asyncPath.node.key.name || ''
               break
           }
-
           let funcName =
             asyncName ||
             (node.argument.callee && node.argument.callee.name) ||
             ''
-
           const temp = template.default(tryTemplate)
-
           const tempArgumentObj = {
-            ERROR_PLACEHOLDER: stringLiteral(
-              `filePath: ${filePath}
-              funcName: ${funcName}`,
-            ),
+            ERROR_F: stringLiteral(filePath),
+            ERROR_N: stringLiteral(funcName),
+            ERROR_S: stringLiteral(`${asyncPath.node.start || ''}`),
           }
-
           const tryNode = temp(tempArgumentObj)
-
-          // 获取async节点(父节点)的函数体
           let info = asyncPath.node.body
           tryNode.block.body.push(...info.body)
           info.body = [tryNode]
-
           return false
         },
       }
