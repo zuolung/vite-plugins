@@ -8,7 +8,7 @@ import generator from '@babel/generator'
 let tryTemplate = `
 try {
 } catch (e) {
-  handleTryCatchError(ERROR_F, ERROR_N, ERROR_S, e)
+  handleAsyncAwaitError(ERROR_F, ERROR_N, ERROR_S, e)
 }`
 
 export default function VitePluginAsyncCatch({

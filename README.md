@@ -24,8 +24,14 @@ yarn add vitejs-plugins
 It is defined globally in advance to handle the error information returned by the multi-layer asyncAwait function
 
 ```ts
-window.handleTryCatchError = function (detail, functionName, line, err) {
-  console.info(detail, functionName, line, err)
+/**
+ * @filePath
+ * @functionName
+ * @start The number of characters
+ * @err reject error info
+ **/
+window.handleAsyncAwaitError = function (filePath, functionName, start, err) {
+  console.info(filePath, functionName, start, err)
 }
 ```
 Reconfigure the vitejs plugin
