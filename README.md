@@ -9,9 +9,10 @@
 
 > easy to use vitejs plugins
 
-- 👌 VitePluginAsyncCatch： add 'try {} catch (e) {}' exception capture for async function
+- 👌 VitePluginAsyncCatch： add `try {} catch (e) {}` exception capture for async function
 - ⛺️ VitePluginRouters： dynamically generate page routing files based on directory structure
 - 📦 VitePluginStyleImport： styles that reference component libraries on demand
+- 📺 VitePluginFullReload： automatically reload the page when some specific files are modified
 
 ## Install
 ```bash
@@ -51,6 +52,7 @@ export default {
 ```
 
 ### VitePluginRouters
+dynamically generate page routing files based on directory structure
 ```ts
 import { VitePluginRouters } from 'vitejs-plugins'
 
@@ -81,6 +83,8 @@ export default [
 
 
 ### VitePluginStyleImport
+
+styles that reference component libraries on demand. For example, reference the style of the ant d component library on demand
 ```ts
 import { VitePluginStyleImport } from 'vitejs-plugins'
 
@@ -104,3 +108,24 @@ function createImport(component_: string) { // get every component name
   }
 }
 ```
+
+### VitePluginFullReload
+automatically reload the page when some specific files are modified.
+```ts
+import { VitePluginFullReload } from 'vitejs-plugins'
+
+export default {
+  //.. 
+  plugins: [
+    VitePluginFullReload(['config/xxx.config.ts']),
+  ]
+}
+```
+the second parameter type is as follows
+
+| 字段               | 描述                 | 类型       | 默认值                                         |
+| ------------------ | -------------------- | ---------- | ---------------------------------------------- |
+| delay      | delay time | _number_   | `0` |
+| log      |  | _boolean_   | `true` |
+| root      | Files will be resolved against this path | _string_   | `process.cwd()` |
+                                       |
