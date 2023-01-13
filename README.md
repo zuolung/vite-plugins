@@ -126,6 +126,6 @@ the second parameter type is as follows
 | 字段               | 描述                 | 类型       | 默认值                                         |
 | ------------------ | -------------------- | ---------- | ---------------------------------------------- |
 | delay      | delay time | _number_   | `0` |
-| log      |  | _boolean_   | `true` |
+| log      | log after reload  | _boolean_   | `true` |
 | root      | Files will be resolved against this path | _string_   | `process.cwd()` |
                                        |
